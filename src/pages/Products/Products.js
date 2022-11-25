@@ -27,6 +27,7 @@ const Products = () => {
                 booking &&
                 <BookNowModal
                 booking={booking}
+                setBooking={setBooking}
                 />
             }
         </div>

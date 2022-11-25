@@ -16,7 +16,7 @@ const Product = ({ product, setBooking }) => {
   } = product;
   return (
     <div>
-      <div className="card min-h-[750px] bg-base-100 shadow-2xl">
+      <div className="card min-h-[780px] bg-base-100 shadow-2xl">
         <figure className="px-10 pt-10">
           <img
             src={img}
@@ -41,8 +41,8 @@ const Product = ({ product, setBooking }) => {
                 </div>
                 <p>Condition: {condition}</p>
             </div>
-          <div className="card-actions">
-          <label onClick={() => setBooking(product)} htmlFor="booknow-modal" className="btn bg-gradient-to-r from-cyan-500 to-blue-500 border-0">Book Now</label>
+          <div className="card-actions w-full">
+          <label onClick={() => setBooking(product)} htmlFor="booknow-modal" className="btn bg-gradient-to-r from-cyan-500 to-blue-500 border-0 w-full">Book Now</label>
           </div>
         </div>
       </div>
