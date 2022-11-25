@@ -2,7 +2,7 @@ import React from "react";
 import { ImLocation } from "react-icons/im";
 import { FaPhone } from "react-icons/fa";
 
-const Product = ({ product }) => {
+const Product = ({ product, setBooking }) => {
   const {
     name,
     img,
@@ -42,7 +42,7 @@ const Product = ({ product }) => {
                 <p>Condition: {condition}</p>
             </div>
           <div className="card-actions">
-            <button className="btn btn-primary">Add to Cart</button>
+          <label onClick={() => setBooking(product)} htmlFor="booknow-modal" className="btn bg-gradient-to-r from-cyan-500 to-blue-500 border-0">Book Now</label>
           </div>
         </div>
       </div>

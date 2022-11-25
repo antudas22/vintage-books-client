@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import BookNowModal from '../BookNowModal/BookNowModal';
 import Product from './Product';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
+    const [booking, setBooking] = useState(null);
 
     useEffect( () => {
         fetch('products.json')
@@ -17,9 +19,16 @@ const Products = () => {
                     products.map(product => <Product
                         key={product.id}
                         product={product}
+                        setBooking={setBooking}
                     ></Product>)
                 }
             </div>
+            {
+                booking &&
+                <BookNowModal
+                booking={booking}
+                />
+            }
         </div>
     );
 };
