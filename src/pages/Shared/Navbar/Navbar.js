@@ -3,6 +3,22 @@ import { Link } from "react-router-dom";
 import logo from "../../../media/logo.png";
 
 const Navbar = () => {
+    const navItems = (
+        <>
+            <li>
+            <Link to='/'>Home</Link>
+          </li>
+          <li>
+            <Link to='/products'>Products</Link>
+          </li>
+          <li>
+            <Link to='/about'>About Us</Link>
+          </li>
+          <li>
+            <Link to='/login'>Login</Link>
+          </li>
+        </>
+    )
   return (
     <div className="navbar bg-orange-50 justify-between">
       <div className="navbar-start">
@@ -27,36 +43,14 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-            <Link to='/'>Home</Link>
-          </li>
-          <li>
-            <Link to='/products'>Products</Link>
-          </li>
-          <li>
-            <Link to='/about'>About Us</Link>
-          </li>
-          <li>
-            <Link to='/login'>Login</Link>
-          </li>
+            {navItems}
           </ul>
         </div>
-        <Link><img width={'180px'} src={logo} alt="" /></Link>
+        <Link to='/'><img width={'180px'} src={logo} alt="" /></Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
-          <li>
-            <Link to='/'>Home</Link>
-          </li>
-          <li>
-            <Link to='/products'>Products</Link>
-          </li>
-          <li>
-            <Link to='/about'>About Us</Link>
-          </li>
-          <li>
-            <Link to='/login'>Login</Link>
-          </li>
+          {navItems}
         </ul>
       </div>
     </div>

@@ -1,0 +1,80 @@
+[
+    {
+        "id": 1,
+        "name": "The Adventures of Sherlock Holmes",
+        "img": "https://m.media-amazon.com/images/I/81tNnqcHxlL.jpg",
+        "categoryId": 1,
+        "location": "Narayanganj",
+        "resalePrice": 35,
+        "originalPrice": 55,
+        "usedTime": "45 days",
+        "condition": "Good",
+        "mobile": 112121522,
+        "description": "The Adventures of Sherlock Holmes is a collection of twelve short stories by British writer Arthur Conan Doyle, first published on 14 October 1892."
+    },
+    {
+        "id": 2,
+        "name": "The Night Fire",
+        "img": "https://images.booksense.com/images/454/701/9781538701454.jpg",
+        "categoryId": 1,
+        "location": "Narayanganj",
+        "resalePrice": 35,
+        "originalPrice": 55,
+        "usedTime": "45 days",
+        "condition": "Good",
+        "mobile": 112121522,
+        "description": "Michael Connelly is the author of thirty-six previous novels, including #1 New York Times bestsellers The Dark Hours andThe Law of Innocence."
+    },
+    {
+        "id": 3,
+        "name": "Carrie",
+        "img": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1381972494l/6360296.jpg",
+        "categoryId": 2,
+        "location": "Narayanganj",
+        "resalePrice": 35,
+        "originalPrice": 55,
+        "usedTime": "45 days",
+        "condition": "Good",
+        "mobile": 112121522,
+        "description": "Carrie is a horror novel by American author Stephen King. It was his first published novel, released on April 5, 1974, with a first print-run of 30,000 copies."
+    },
+    {
+        "id": 4,
+        "name": "The Haunting of Hill House",
+        "img": "https://flxt.tmsimg.com/assets/p15880871_b_v8_ab.jpg",
+        "categoryId": 2,
+        "location": "Narayanganj",
+        "resalePrice": 35,
+        "originalPrice": 55,
+        "usedTime": "45 days",
+        "condition": "Good",
+        "mobile": 112121522,
+        "description": "The Haunting of Hill House is a 1959 gothic horror novel by American author Shirley Jackson."
+    },
+    {
+        "id": 5,
+        "name": "One Hundred Years of Solitude",
+        "img": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1354829590l/7597.jpg",
+        "categoryId": 3,
+        "location": "Narayanganj",
+        "resalePrice": 35,
+        "originalPrice": 55,
+        "usedTime": "45 days",
+        "condition": "Good",
+        "mobile": 112121522,
+        "description": "One Hundred Years of Solitude is a 1967 novel by Colombian author Gabriel García Márquez that tells the multi-generational."
+    },
+    {
+        "id": 6,
+        "name": "Memoirs of a Geisha",
+        "img": "https://upload.wikimedia.org/wikipedia/en/d/dc/MemoirsOfAGeisha.jpg",
+        "categoryId": 3,
+        "location": "Narayanganj",
+        "resalePrice": 35,
+        "originalPrice": 55,
+        "usedTime": "45 days",
+        "condition": "Good",
+        "mobile": 112121522,
+        "description": "Memoirs of a Geisha is a historical fiction novel by American author Arthur Golden, published in 1997."
+    }
+]
