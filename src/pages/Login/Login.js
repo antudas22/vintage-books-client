@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
   const { register, handleSubmit, 
     formState: { errors }, } = useForm();
+    const {signIn} = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('');
 
   const handleLogin = data => {
     console.log(data);
+    setLoginError('');
+    signIn(data.email, data.password)
+    .then(result => {
+        const user = result.user;
+        console.log(user)
+    })
+    .catch(error => {
+        console.log(error.message)
+        setLoginError(error.message);
+    });
   }
 
   return (
@@ -42,15 +55,16 @@ const Login = () => {
           <label className="label">
               <span className="label-text">Forget Password?</span>
           </label>
-
-          <select {...register("role", { required: true })} className="select select-bordered w-full max-w-xs">
-            <option value="user">Create account as a User</option>
-            <option value="seller">Create account as a Seller</option>
-          </select>
-          <input className="btn bg-gradient-to-r from-cyan-500 to-blue-500 border-0 w-full mt-4 mb-4" type="submit" value="login" />
+          <input className="btn bg-gradient-to-r from-cyan-500 to-blue-500 border-0 w-full mt-4" type="submit" value="login" />
+          <div>
+            {
+                loginError &&
+                <p className="text-error">{loginError}</p>
+            }
+          </div>
         </form>
         <small>
-          <p className="text-center">
+          <p className="text-center mt-4">
             New to Doctors Portal?{" "}
             <Link className="text-blue-500" to="/signup">
               Create New Account

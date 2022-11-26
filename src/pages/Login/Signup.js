@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Signup = () => {
+    const {createUser} = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -11,14 +13,19 @@ const Signup = () => {
 
   const handleSignUp = (data) => {
     console.log(data);
-    
+    createUser(data.email, data.password)
+    .then(result => {
+        const user = result.user;
+        console.log(user);
+    })
+    .catch(error => console.log(error));
   };
 
   return (
     <div>
       <div className="h-[800px] flex justify-center items-start mt-10">
         <div className="w-96 bg-orange-50 p-7 shadow-xl rounded-3xl">
-          <h2 className="text-xl text-center text-bold">Sign Up</h2>
+          <h2 className="text-3xl text-center font-semibold">Sign Up</h2>
           <form onSubmit={handleSubmit(handleSignUp)}>
             <div className="form-control w-full max-w-xs">
               <label className="label">
@@ -68,9 +75,13 @@ const Signup = () => {
                   {errors.password.message}
                 </p>
               )}
+              <select {...register("role", { required: true })} className="select select-bordered w-full max-w-xs">
+            <option value="user">Create account as a User</option>
+            <option value="seller">Create account as a Seller</option>
+          </select>
             </div>
             <input
-              className="btn bg-gradient-to-r from-cyan-500 to-blue-500 border-0 w-full mb-3"
+              className="btn bg-gradient-to-r from-cyan-500 to-blue-500 border-0 w-full mb-3 mt-6"
               value="Sign Up"
               type="submit"
             />

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider";
 import logo from "../../../media/logo.png";
 
 const Navbar = () => {
+  const {user} = useContext(AuthContext);
     const navItems = (
         <>
             <li>
@@ -14,9 +16,16 @@ const Navbar = () => {
           <li>
             <Link to='/about'>About Us</Link>
           </li>
-          <li>
-            <Link to='/login'>Sign In</Link>
-          </li>
+          {
+            user?.uid ?
+            <li>
+              <Link >Sign Out</Link>
+            </li>
+            :
+            <li>
+              <Link to='/login'>Sign Out</Link>
+            </li>
+          }
         </>
     )
   return (
