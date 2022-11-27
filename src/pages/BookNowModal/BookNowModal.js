@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const BookNowModal = ({booking, setBooking}) => {
-    const {name, resalePrice, location} = booking;
+    const {name: bookName, resalePrice, location} = booking;
     const {user} = useContext(AuthContext);
 
     const handleBookNow = e => {
         e.preventDefault();
         const form = e.target;
-        const book = form.book.value;
         const price = form.price.value;
         const location = form.location.value;
         const name = form.name.value;
@@ -16,8 +16,8 @@ const BookNowModal = ({booking, setBooking}) => {
         const phone = form.phone.value;
         const meetingLocation = form.meetingLocation.value;
 
-        const bookNow = {
-            bookName: book,
+        const booked = {
+            bookName,
             price,
             location,
             user: name,
@@ -26,8 +26,21 @@ const BookNowModal = ({booking, setBooking}) => {
             meetingLocation: meetingLocation,
         }
 
-        console.log(bookNow);
-        setBooking(null)
+        fetch('http://localhost:5000/booked', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(booked)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          if(data.acknowledged){
+            setBooking(null);
+            toast.success('Booked')
+          }
+        })
     }
   return (
     <>
@@ -45,7 +58,7 @@ const BookNowModal = ({booking, setBooking}) => {
           <label className="label">
             <span className="label-text">Name</span>
           </label>
-          <input name="book" type="text" disabled value={name} placeholder="Type here" className="input input-bordered w-full" />
+          <input name="book" type="text" disabled value={bookName} placeholder="Type here" className="input input-bordered w-full" />
           <label className="label">
             <span className="label-text">Price: $</span>
           </label>
