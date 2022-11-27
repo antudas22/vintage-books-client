@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const BookNowModal = ({booking, setBooking}) => {
     const {name, resalePrice, location} = booking;
+    const {user} = useContext(AuthContext);
 
     const handleBookNow = e => {
         e.preventDefault();
@@ -18,7 +20,7 @@ const BookNowModal = ({booking, setBooking}) => {
             bookName: book,
             price,
             location,
-            userName: name,
+            user: name,
             email,
             phone,
             meetingLocation: meetingLocation,
@@ -52,8 +54,8 @@ const BookNowModal = ({booking, setBooking}) => {
             <span className="label-text">Location</span>
           </label>
           <input name="location" type="text" disabled value={location} placeholder="Type here" className="input input-bordered w-full mt-2" />
-          <input name="name" type="text" disabled placeholder="Your Name" className="input input-bordered w-full mt-2" />
-          <input name="email" type="email" disabled placeholder="Email" className="input input-bordered w-full mt-2" />
+          <input name="name" defaultValue={user?.displayName} type="text" disabled placeholder="Your Name" className="input input-bordered w-full mt-2" />
+          <input name="email" defaultValue={user?.email} type="email" disabled placeholder="Email" className="input input-bordered w-full mt-2" />
           <input name="phone" type="text" placeholder="Your mobile number" className="input input-bordered w-full mt-2" />
           <input name="meetingLocation" type="text" placeholder="Put your meeting location" className="input input-bordered w-full mt-2" />
           <input type="submit" className="btn bg-gradient-to-r from-cyan-500 to-blue-500 border-0 w-full mt-6" value="Submit" />

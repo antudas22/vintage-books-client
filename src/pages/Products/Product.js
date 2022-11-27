@@ -15,7 +15,7 @@ const Product = ({ product, setBooking }) => {
     description,
   } = product;
   return (
-    <div>
+    <div className="p-5">
       <div className="card min-h-[780px] bg-base-100 shadow-2xl">
         <figure className="px-10 pt-10">
           <img

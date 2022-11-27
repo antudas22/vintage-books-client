@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import BookNowModal from '../BookNowModal/BookNowModal';
 import Product from './Product';
+import {useQuery} from '@tanstack/react-query';
 
 const Products = () => {
-    const [products, setProducts] = useState([]);
     const [booking, setBooking] = useState(null);
 
-    useEffect( () => {
-        fetch('products.json')
-        .then(res => res.json())
-        .then(data => setProducts(data))
-    }, [])
+    const {data:products = []} = useQuery({
+        queryKey: ['products'],
+        queryFn: async() => {
+            const res = await fetch('http://localhost:5000/products');
+            const data = await res.json();
+            return data
+        }
+    })
     return (
         <div>
             <h2 className='text-3xl font-bold my-10 text-center'>Products</h2>

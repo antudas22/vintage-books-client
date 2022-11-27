@@ -30,7 +30,7 @@ const Navbar = () => {
                   <div className="w-12">
                     <img className="rounded-full" src={user.photoURL} alt="" />
                 </div>
-                : <FaUser className="text-blue-400" />                  
+                : <FaUser className="text-gray-500" />                  
                 }
               </label>
               <ul
