@@ -1,24 +1,49 @@
-import React, { useContext } from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Signup = () => {
-    const {createUser} = useContext(AuthContext);
+    const {providerLogin, createUser, updateUser} = useContext(AuthContext);
+    const [signUpError, setSignUpError] = useState('');
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const googleProvider = new GoogleAuthProvider()
+
+  const handleGoogleSignIn = () => {
+    providerLogin(googleProvider)
+    .then(result => {
+      const user = result.user;
+      console.log(user);
+    })
+    .catch(error => console.log(error))
+  }
+
   const handleSignUp = (data) => {
     console.log(data);
+    setSignUpError('');
     createUser(data.email, data.password)
     .then(result => {
         const user = result.user;
         console.log(user);
+        toast.success('Account Created')
+        const userInfo = {
+          displayName: data.name
+        }
+        updateUser(userInfo)
+        .then(() => {})
+        .catch(error => console.log(error));
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error)
+      setSignUpError(error.message)
+    });
   };
 
   return (
@@ -85,6 +110,7 @@ const Signup = () => {
               value="Sign Up"
               type="submit"
             />
+            {signUpError && <p className="text-error">{signUpError}</p>}
           </form>
           <small>
             <p className="text-center">
@@ -95,7 +121,7 @@ const Signup = () => {
             </p>
           </small>
           <div className="divider">OR</div>
-          <button className="btn btn-outline w-full uppercase">
+          <button onClick={handleGoogleSignIn} className="btn btn-outline w-full uppercase">
             Continue with google
           </button>
         </div>

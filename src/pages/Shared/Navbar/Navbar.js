@@ -1,33 +1,63 @@
 import React, { useContext } from "react";
+import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import logo from "../../../media/logo.png";
 
 const Navbar = () => {
-  const {user} = useContext(AuthContext);
-    const navItems = (
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
+  const navItems = (
+    <>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/products">Products</Link>
+      </li>
+      {user?.uid ? (
         <>
-            <li>
-            <Link to='/'>Home</Link>
-          </li>
           <li>
-            <Link to='/products'>Products</Link>
+            <div className="dropdown dropdown-bottom dropdown-end">
+              <label tabIndex={0}>
+                {user?.photoURL ?
+                  <div className="w-12">
+                    <img className="rounded-full" src={user.photoURL} alt="" />
+                </div>
+                : <FaUser className="text-blue-400" />                  
+                }
+              </label>
+              <ul
+                tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <p className="w-full mb-2">{user?.displayName}</p>
+                </li>
+                <li>
+                  <Link className="w-full mb-2" to="/dashboard">Dashboard</Link>
+                </li>
+                <li>
+                  <button className="w-full" onClick={handleLogOut}>Sign Out</button>
+                </li>
+                
+              </ul>
+            </div>
+            <p></p>
           </li>
-          <li>
-            <Link to='/about'>About Us</Link>
-          </li>
-          {
-            user?.uid ?
-            <li>
-              <Link >Sign Out</Link>
-            </li>
-            :
-            <li>
-              <Link to='/login'>Sign Out</Link>
-            </li>
-          }
         </>
-    )
+      ) : (
+        <li>
+          <Link to="/login">Sign In</Link>
+        </li>
+      )}
+    </>
+  );
   return (
     <div className="navbar bg-orange-50 justify-between">
       <div className="navbar-start">
@@ -55,12 +85,12 @@ const Navbar = () => {
             {navItems}
           </ul>
         </div>
-        <Link to='/'><img width={'180px'} src={logo} alt="" /></Link>
+        <Link to="/">
+          <img width={"180px"} src={logo} alt="" />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">
-          {navItems}
-        </ul>
+        <ul className="menu menu-horizontal p-0">{navItems}</ul>
       </div>
     </div>
   );
