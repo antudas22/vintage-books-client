@@ -35,7 +35,7 @@ const MyOrders = () => {
     </thead>
     <tbody>
       {
-        booked.map((book, i) => <tr className="hover">
+        booked.map((book, i) => <tr key={book._id} className="hover">
         <th>{i + 1}</th>
         <td>{book.user}</td>
         <td>{book.bookName}</td>
