@@ -38,6 +38,7 @@ const Login = () => {
     signIn(data.email, data.password)
     .then(result => {
         const user = result.user;
+        navigate('/')
         console.log(user)
         setLoginUserEmail(data.email)
     })
