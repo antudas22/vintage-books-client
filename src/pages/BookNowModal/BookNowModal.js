@@ -26,7 +26,7 @@ const BookNowModal = ({booking, setBooking}) => {
             meetingLocation: meetingLocation,
         }
 
-        fetch('http://localhost:5000/booked', {
+        fetch('https://vintage-books-server.vercel.app/booked', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'

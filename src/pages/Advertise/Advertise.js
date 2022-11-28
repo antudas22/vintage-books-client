@@ -7,7 +7,7 @@ const Advertise = () => {
   
   const [booking, setBooking] = useState(null);
   useEffect(() => {
-    fetch("http://localhost:5000/advertise")
+    fetch("https://vintage-books-server.vercel.app/advertise")
       .then((res) => res.json())
       .then((data) => setAdvertises(data));
   }, []);
