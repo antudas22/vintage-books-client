@@ -40,7 +40,7 @@ const MyOrders = () => {
         <td>{book.user}</td>
         <td>{book.bookName}</td>
         <td>${book.price}</td>
-        <td>Purple</td>
+        <td><button className='btn bg-gradient-to-r from-cyan-500 to-blue-500 border-0 btn-sm'>Pay</button></td>
       </tr>)
       }
     </tbody>
